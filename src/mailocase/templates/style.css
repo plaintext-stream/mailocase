@@ -1,0 +1,227 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Sans Mono", "Noto Sans CJK SC", "Noto Sans SC",
+               "Noto Color Emoji", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  background: #fff;
+  color: #222;
+}
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 1rem; }
+
+#site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #888;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#site-header a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#site-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+#site-nav a {
+  color: #444;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+#site-nav a:hover { text-decoration: underline; }
+
+#site-footer {
+  border-top: 1px solid #888;
+  margin-top: 2rem;
+  padding-top: 0.5rem;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+a            { color: #0000cc; }
+a:visited    { color: #551a8b; }
+a:hover      { text-decoration: underline; }
+
+/* ── Homepage ── */
+
+.intro {
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+table.threads {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.threads th {
+  text-align: left;
+  border-bottom: 1px solid #888;
+  padding: 0.2rem 0.5rem;
+}
+
+table.threads td {
+  padding: 0.15rem 0.5rem;
+  vertical-align: top;
+}
+
+table.threads tr:hover td { background: #f5f5f5; }
+
+.col-replies { text-align: right; color: #666; }
+.col-date    { white-space: nowrap; color: #666; }
+.col-from    { white-space: nowrap; }
+
+/* ── Email page ── */
+
+.email-headers {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  word-break: break-word;
+  font-size: 0.9rem;
+}
+
+.email-headers table { border-collapse: collapse; }
+
+.email-headers th {
+  font-weight: bold;
+  text-align: right;
+  padding-right: 1rem;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.email-body {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0.5rem 0;
+}
+
+.quote { color: #1a6fb5; }
+
+.email-container { display: flow-root; }
+
+.links-box {
+  float: right;
+  max-width: 220px;
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.links-box h3 {
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.2rem;
+}
+
+.links-box ul { list-style: none; }
+.links-box li { padding: 0.1rem 0; }
+
+.thread-box {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.thread-box h3 {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.25rem;
+}
+
+.thread-tree              { list-style: none; }
+.thread-tree ul           { list-style: none; padding-left: 2ch; }
+.thread-tree li           { padding: 0.1rem 0; }
+.thread-tree .cur         { font-weight: bold; }
+.thread-tree .cur::before { content: "→ "; }
+.thread-tree .meta        { color: #666; }
+
+/* ── Dark mode ── */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1a1a;
+    color: #ddd;
+  }
+
+  #site-header {
+    border-bottom-color: #555;
+  }
+
+  #site-header a {
+    color: #eee;
+  }
+
+  #site-nav a {
+    color: #bbb;
+  }
+
+  #site-footer {
+    border-top-color: #555;
+    color: #999;
+  }
+
+  a         { color: #7aa2f7; }
+  a:visited { color: #bb9af7; }
+
+  table.threads th {
+    border-bottom-color: #555;
+  }
+
+  table.threads tr:hover td {
+    background: #242424;
+  }
+
+  .col-replies,
+  .col-date {
+    color: #999;
+  }
+
+  .email-headers {
+    background: #242424;
+    border-color: #555;
+  }
+
+  .quote { color: #93c5fd; }
+
+  .links-box {
+    background: #242424;
+    border-color: #555;
+  }
+
+  .links-box h3 {
+    border-bottom-color: #555;
+  }
+
+  .thread-box {
+    background: #242424;
+    border-color: #555;
+  }
+
+  .thread-box h3 {
+    border-bottom-color: #555;
+  }
+
+  .thread-tree .meta {
+    color: #999;
+  }
+}
