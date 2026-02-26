@@ -1,5 +1,8 @@
 # Mailocase
 
+> [!NOTE]
+> Most code is generated with Claude and *reviewed by human*. Still, there is no absolute guarantee of quality and caution is recommended.
+
 A local mailing list emulator and static site generator. Write and send emails to a simulated mailing list, organize them into threaded conversations, and render the archive as a static HTML website.
 
 ## Features
@@ -142,7 +145,10 @@ mailocase list --include-draft          # Include drafts in results
   "site": {
     "title": "Mailocase Archive",
     "footer": "Powered by Mailocase",
-    "homepage_text": ""
+    "homepage_text": "",
+    "links": [
+      { "url": "", "label": "" }
+    ]
   }
 }
 ```
@@ -156,6 +162,7 @@ mailocase list --include-draft          # Include drafts in results
 | `site.title` | Title shown in the rendered site |
 | `site.footer` | Footer text on every page |
 | `site.homepage_text` | Optional intro text on the index page |
+| `site.links` | Navigation links in header |
 
 Mailocase searches for `config.json` by walking up the directory tree from your current working directory, so you can run commands from any subdirectory of your archive.
 
