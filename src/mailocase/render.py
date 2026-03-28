@@ -194,6 +194,15 @@ def _page(
     )
 
 
+def _truncate_string(string: str, length: int) -> str:
+    if len(string) <= length:
+        return string
+    elif length <= 3:
+        return '...'
+    else:
+        return string[:length - 3] + '...'
+
+
 def _render_index(roots: list[ThreadNode], site: dict[str, Any]) -> str:
     intro = site.get("homepage_text", "")
     intro_html = f'<p class="intro">{html.escape(intro)}</p>\n' if intro else ""
@@ -209,7 +218,7 @@ def _render_index(roots: list[ThreadNode], site: dict[str, Any]) -> str:
         rows.append(
             f"<tr>"
             f'<td><a href="m/{node.hash}.html">{subj}</a></td>'
-            f'<td class="col-from">{frm}</td>'
+            f'<td class="col-from">{_truncate_string(frm, 15)}</td>'
             f'<td class="col-replies">{reply_str}</td>'
             f'<td class="col-date">{date}</td>'
             f"</tr>"
