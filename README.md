@@ -116,6 +116,13 @@ Produces:
 - `index.html` — thread listing with reply counts
 - `m/<hash>.html` — individual email pages with thread view
 
+You can also immediately preview the site with `-p`:
+
+```sh
+mailocase render -p              # Bind 127.0.0.1:8000 by default
+mailocase render -b 0.0.0.0 9000 # Optionally specify address and port
+```
+
 ### `list [filters]`
 
 Search and filter emails.
@@ -146,6 +153,7 @@ mailocase list --include-draft          # Include drafts in results
     "title": "Mailocase Archive",
     "footer": "Powered by Mailocase",
     "homepage_text": "",
+    "favicon": "",
     "links": [
       { "url": "", "label": "" }
     ]
