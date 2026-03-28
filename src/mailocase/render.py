@@ -1,4 +1,5 @@
 from __future__ import annotations
+from logging.handlers import SocketHandler
 
 import html
 import re
@@ -305,7 +306,22 @@ def render_site(mail_dir: Path, output_dir: Path, config: dict[str, Any]) -> Non
         (m_dir / f"{h}.html").write_text(page)
 
 
-def cmd_render(output: str = "site") -> None:
+def _preview(base_path: Path, addr: str = "127.0.0.1", port: int = 8000) -> None:
+    import http.server
+    import socketserver
+    from functools import partial
+
+    handler = partial(http.server.SimpleHTTPRequestHandler, directory=base_path)
+
+    with socketserver.TCPServer((addr, port), handler) as httpd:
+        print(f"Preview available at http://{addr}:{port}")
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
+
+
+def cmd_render(output: str = "site", preview: bool = False, binding: tuple[str, int] = ("127.0.0.1", 8000)) -> None:
     cfg_path = find_config()
     if cfg_path is None:
         print("Error: Not in a mailocase directory. Run 'mailocase init' first.")
@@ -319,3 +335,6 @@ def cmd_render(output: str = "site") -> None:
     count = sum(1 for f in mail_dir.iterdir() if f.is_file()) if mail_dir.is_dir() else 0
     render_site(mail_dir, output_dir, config)
     print(f"Rendered {count} message(s) → {output_dir}")
+
+    if preview:
+        _preview(output_dir, binding[0], binding[1])

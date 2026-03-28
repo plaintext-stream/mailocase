@@ -56,6 +56,14 @@ def main() -> None:
         "output", nargs="?", default="site", metavar="output_dir",
         help="Output directory (default: site/)",
     )
+    p_render.add_argument(
+        "-p", "--preview", action="store_true",
+        help="Start HTTP server to preview site" 
+    )
+    p_render.add_argument(
+        "-b", "--bind", nargs=2, default=None, dest="binding", metavar=("addr", "port"),
+        help="Specify bind address and port of preview server"
+    )
 
     p_list = sub.add_parser("list", help="Search and list emails")
     p_list.add_argument("--root",          action="store_true",
@@ -85,7 +93,14 @@ def main() -> None:
         case "delete":
             cmd_delete(args.name)
         case "render":
-            cmd_render(args.output)
+            if args.preview:
+                if args.binding:
+                    bindings = (args.binding[0], int(args.binding[1]))
+                    cmd_render(args.output, True, bindings)
+                else:
+                    cmd_render(args.output, True)
+            else:
+                cmd_render(args.output)
         case "list":
             cmd_list(args.root, args.from_addr, args.cc_filter,
                      args.subject, args.content, args.include_draft)
